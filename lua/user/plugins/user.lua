@@ -29,5 +29,13 @@ return {
         server_opts_overrides = {},
       })
     end,
-  }
+  },
+  "f-person/git-blame.nvim",
+  {
+    "catppuccin/nvim",
+      name = "catppuccin",
+      config = function()
+        require("catppuccin").setup {}
+      end,
+  },
 }
