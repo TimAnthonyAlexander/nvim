@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "catppuccin",
+  colorscheme = "vscode",
 
   plugins = {
     {
@@ -52,9 +52,21 @@ return {
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
-        "intelephense"
       },
       timeout_ms = 1000, -- default format timeout
+      filter = function(bufnr)
+        -- Dont format if file is located in /tmp
+        local path = vim.fn.expand("%:p:h")
+        -- If the file is json, allow formatting
+        if vim.bo.filetype == "json" then
+          return true
+        end
+        -- If the path includes /mw or /api, return false
+        if path:match("/mw/") or path:match("/api/") then
+          return false
+        end
+        return true
+      end
       -- filter = function(client) -- fully override the default formatting function
       --   return true
       -- end
@@ -71,7 +83,7 @@ return {
     performance = {
       rtp = {
         -- customize default disabled vim plugins
-        disabled_plugins = { "tohtml", "gzip", "matchit", "zipPlugin", "netrwPlugin", "tarPlugin" },
+        disabled_plugins = {},
       },
     },
   },
@@ -86,6 +98,9 @@ return {
     -- vim.cmd("autocmd VimEnter * sleep 50m | wincmd l")
     vim.api.nvim_create_autocmd("UiEnter", {
       command = "Neotree toggle ",
+    })
+    vim.api.nvim_create_autocmd("BufEnter", {
+      command = "Copilot! attach ",
     })
     -- Set up custom filetypes
  --   vim.filetype.add {
