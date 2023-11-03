@@ -35,7 +35,9 @@ return {
     "catppuccin/nvim",
       name = "catppuccin",
       config = function()
-        require("catppuccin").setup {}
+        require("catppuccin").setup( {
+        flavour = "mocha",
+      })
       end,
   },
   {
@@ -52,6 +54,14 @@ return {
     end,
   },
   {
+    "ray-x/aurora",
+    config = function()
+      require("aurora").colorscheme({
+      })
+    end,
+  },
+    "bluz71/vim-moonfly-colors",
+  {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
@@ -62,6 +72,30 @@ return {
     end
   },
   "nvim-lua/plenary.nvim",
+  {
+    "HiPhish/nvim-ts-rainbow2",
+    event = "BufEnter",
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        rainbow = {
+          enable = true,
+          query = {
+            'rainbow-parens'
+          },
+          strategy = require('ts-rainbow').strategy.global,
+          hlgroups = {
+            'TSRainbowRed',
+            'TSRainbowYellow',
+            'TSRainbowBlue',
+            'TSRainbowOrange',
+            'TSRainbowGreen',
+            'TSRainbowViolet',
+            'TSRainbowCyan'
+          },
+        }
+      }
+    end,
+  },
   {
     "ThePrimeagen/harpoon",
     cmd = "Harpoon",
