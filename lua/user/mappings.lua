@@ -24,6 +24,15 @@ return {
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     L = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
     H = { function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
+    ["<leader>a"] = { name = "PHP Actions" },
+    -- leader at executes unit test on current file
+    ["<leader>at"] = { "<cmd>TermExec cmd=\"composer test-unit -- %:p\"<cr>", desc = "Run unit test" },
+    -- leader ab executes all unit tests
+    ["<leader>ab"] = { "<cmd>TermExec cmd=\"composer test-unit\"<cr>", desc = "Run all unit tests" },
+    -- leader af executes docker exec -ti mw-appmwdev-1 composer cs-fix
+    ["<leader>af"] = { "<cmd>TermExec cmd=\"composer cs-fix\"<cr>", desc = "Run cs-fix" },
+    -- leader ap executes pre-commit hook
+    ["<leader>ap"] = { "<cmd>TermExec cmd=\".git/hooks/pre-commit\"<cr>", desc = "Run pre-commit" },
     -- Close the last tab "Empty" and show the dashboard with <leader>c
     ["<leader>bC"] = {
       function()
@@ -59,6 +68,6 @@ return {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
     ["<c-x>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle Term" },
-    ["<c-y>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle Term" },
+    ["<c-y>"] = { "<cmd>ToggleTerm<cr>", desc = "2Toggle Term" },
   }, 
 }

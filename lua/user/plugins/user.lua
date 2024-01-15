@@ -73,6 +73,13 @@ return {
   },
   "nvim-lua/plenary.nvim",
   {
+    "wakatime/vim-wakatime",
+     lazy=false,
+     setup = function ()
+         vim.cmd([[packadd wakatime/vim-wakatime]])
+     end
+  },
+  {
     "HiPhish/nvim-ts-rainbow2",
     event = "BufEnter",
     config = function()
