@@ -80,6 +80,13 @@ return {
      end
   },
   {
+    "luk400/vim-lichess",
+    cmd = "Lichess",
+    setup = function ()
+      vim.cmd([[packadd luk400/vim-lichess]])
+    end
+  },
+  {
     "HiPhish/nvim-ts-rainbow2",
     event = "BufEnter",
     config = function()

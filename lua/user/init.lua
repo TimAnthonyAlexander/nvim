@@ -102,6 +102,9 @@ return {
     vim.api.nvim_create_autocmd("BufEnter", {
       command = "Copilot! attach ",
     })
+    vim.api.nvim_create_autocmd("UiEnter", {
+      command = "let g:lichess_api_token = 'lip_0V9bG4RIy7XT6R9jMjFF'",
+    })
     -- Set up custom filetypes
  --   vim.filetype.add {
  --        extension = {
