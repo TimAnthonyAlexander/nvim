@@ -24,6 +24,7 @@ return {
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     L = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
     H = { function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
+
     ["<leader>a"] = { name = "PHP Actions" },
     -- leader at executes unit test on current file
     ["<leader>at"] = { "<cmd>TermExec cmd=\"composer test-unit -- %:p\"<cr>", desc = "Run unit test" },
@@ -33,10 +34,18 @@ return {
     ["<leader>af"] = { "<cmd>TermExec cmd=\"composer cs-fix\"<cr>", desc = "Run cs-fix" },
     -- leader ap executes pre-commit hook
     ["<leader>ap"] = { "<cmd>TermExec cmd=\".git/hooks/pre-commit\"<cr>", desc = "Run pre-commit" },
+
+    -- leader ai shows name "Middleware"
+    ["<leader>ai"] = { name = "Middleware" },
+    -- leader aip executes docker compose exec appmwdev composer phpstan
+    ["<leader>aip"] = { "<cmd>TermExec cmd=\"docker compose exec appmwdev composer phpstan\"<cr>", desc = "Run phpstan" },
     -- leader ac shows name "Composer"
+    
     ["<leader>ac"] = { name = "Composer" },
     -- leader aci executes composer install
     ["<leader>aci"] = { "<cmd>TermExec cmd=\"composer install\"<cr>", desc = "Run composer install" },
+    -- leader aa executes composer phpstan
+    ["<leader>acp"] = { "<cmd>TermExec cmd=\"composer phpstan\"<cr>", desc = "Run phpstan" },
     -- leader acu executes composer update
     ["<leader>acu"] = { "<cmd>TermExec cmd=\"composer update\"<cr>", desc = "Run composer update" },
     -- leader acd executes composer dump-autoload
@@ -44,6 +53,7 @@ return {
     -- leader acr writes composer require without executing
     ["<leader>acm"] = { "<cmd>TermExec cmd=\"composer migrations\"<cr>", desc = "Run composer migrations" },
     -- Close the last tab "Empty" and show the dashboard with <leader>c
+    
     ["<leader>bC"] = {
       function()
         local bufs = vim.fn.getbufinfo { buflisted = true }
