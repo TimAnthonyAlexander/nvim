@@ -101,7 +101,7 @@ return {
       end,
     },
     window = {
-      width = 30,
+      width = 40,
       mappings = {
         ["<space>"] = false, -- disable space until we figure out which-key disabling
         ["[b"] = "prev_source",
@@ -116,7 +116,7 @@ return {
     filesystem = {
       filtered_items = {
         visible = true,
-        hide_dotfiles = true,
+        hide_dotfiles = false,
         hide_gitignored = true,
       },
       follow_current_file = true,
