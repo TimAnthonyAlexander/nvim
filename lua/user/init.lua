@@ -53,16 +53,21 @@ return {
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
       },
-      timeout_ms = 1000, -- default format timeout
+      timeout_ms = 3000, -- default format timeout
       filter = function(bufnr)
         -- Dont format if file is located in /tmp
         local path = vim.fn.expand("%:p:h")
+        local filename = vim.fn.expand("%:t")
         -- If the file is json, allow formatting
         if vim.bo.filetype == "json" then
           return true
         end
         -- If the path includes /mw or /api, return false
-        if path:match("/mw/") or path:match("/api/") then
+        if path:match("/mw/") or path:match("/api/") or path:match("/releasescripts/") then
+          return false
+        end
+        -- If filename is a .es file, return false
+        if filename:match("%.es$") then
           return false
         end
         return true
@@ -105,6 +110,8 @@ return {
     vim.api.nvim_create_autocmd("BufEnter", {
       command = "set shiftwidth=4",
     })
+
+    -- Set up custom augroups
     -- Set up custom filetypes
  --   vim.filetype.add {
  --        extension = {

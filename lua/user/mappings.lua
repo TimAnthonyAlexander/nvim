@@ -79,10 +79,13 @@ return {
     ["<C-l>"] = { "<C-w>l", desc = "Move Right" },
     -- Leader and j = pounce
     ["<leader>j"] = { "<cmd>Pounce<cr>", desc = "Pounce" },
+    ["<c-g>"] = { "<cmd>ChatGPT<cr>", desc = "ChatGPT" },
+    -- Control a executes :ChatGPTEditWithInstructions
+    ["<c-a>"] = { "<cmd>ChatGPTEditWithInstructions<cr>", desc = "ChatGPTEditWithInstructions" },
   },
   i = {
-    ["<c-x>"] = { "<cmd>ToggleTerm1<cr>", desc = "Toggle Term" },
-    ["<c-y>"] = { "<cmd>ToggleTerm2<cr>", desc = "Toggle Term" },
+    ["<c-x>"] = { "<cmd>ToggleTerm1<cr>", desc = "Toggle First Terminal" },
+    ["<c-y>"] = { "<cmd>ToggleTerm2<cr>", desc = "Toggle Second Terminal" },
   },
   t = {
     -- setting a mapping to false will disable it
@@ -90,4 +93,7 @@ return {
     ["<c-x>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle Term" },
     ["<c-y>"] = { "<cmd>ToggleTerm<cr>", desc = "2Toggle Term" },
   }, 
+    v = {
+        ["<c-a>"] = { "<cmd>ChatGPTEditWithInstructions<cr>", desc = "ChatGPTEditWithInstructions" },
+    }
 }
