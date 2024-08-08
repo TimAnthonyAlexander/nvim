@@ -134,6 +134,16 @@ return {
     },
   },
   {
+        "nvim-treesitter/nvim-treesitter-context",
+        event = "BufRead",
+        config = function()
+            require("treesitter-context").setup {
+                enable = true,
+                max_lines = 3,
+            }
+        end,
+    },
+  {
     "HiPhish/nvim-ts-rainbow2",
     event = "BufEnter",
     config = function()
@@ -312,13 +322,14 @@ return {
              model = "gpt-4o",
              frequency_penalty = 0, 
              presence_penalty = 0, 
-             max_tokens = 300, 
+                    max_tokens = 300,item.chat.id === id 
+                    ?3
+
              temperature = 0, 
              top_p = 1, 
              n = 1, 
            }, 
            openai_edit_params = { 
-             model = "gpt-3.5-turbo", 
              frequency_penalty = 0, 
              presence_penalty = 0, 
              temperature = 0, 

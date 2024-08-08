@@ -88,6 +88,7 @@ return {
         ["[["] = false,
         ["]]"] = false,
       },
+      disable_max_lines = 30000,
     },
   },
 }
