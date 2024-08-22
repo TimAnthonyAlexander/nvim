@@ -53,6 +53,8 @@ return {
     -- leader acr writes composer require without executing
     ["<leader>acm"] = { "<cmd>TermExec cmd=\"composer migrations\"<cr>", desc = "Run composer migrations" },
     -- Close the last tab "Empty" and show the dashboard with <leader>c
+    -- leader fp performs :WorkspacesOpen
+    ["<leader>fp"] = { "<cmd>WorkspacesOpen<cr>", desc = "Open Workspaces" },
     
     ["<leader>bC"] = {
       function()

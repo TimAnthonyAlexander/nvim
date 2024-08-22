@@ -322,9 +322,7 @@ return {
              model = "gpt-4o",
              frequency_penalty = 0, 
              presence_penalty = 0, 
-                    max_tokens = 300,item.chat.id === id 
-                    ?3
-
+	    max_tokens = 300,
              temperature = 0, 
              top_p = 1, 
              n = 1, 
@@ -354,12 +352,45 @@ return {
         }
     },
   {
-    "ThePrimeagen/harpoon",
-    cmd = "Harpoon",
-    config = function()
-        require("harpoon").setup({
+        'ta-tikoma/php.easy.nvim',
+        config = true,
+        keys = {
+            {'-b', '<CMD>PHPEasyDocBlock<CR>'},
+            {'-r', '<CMD>PHPEasyReplica<CR>'},
+            {'-c', '<CMD>PHPEasyCopy<CR>'},
+            {'-d', '<CMD>PHPEasyDelete<CR>'},
+            {'-uu', '<CMD>PHPEasyRemoveUnusedUses<CR>'},
+            {'-e', '<CMD>PHPEasyExtends<CR>'},
+            {'-i', '<CMD>PHPEasyImplements<CR>'},
+            {'-ii', '<CMD>PHPEasyInitInterface<CR>'},
+            {'-ic', '<CMD>PHPEasyInitClass<CR>'},
+            {'-iac', '<CMD>PHPEasyInitAbstractClass<CR>'},
+            {'-it', '<CMD>PHPEasyInitTrait<CR>'},
+            {'-ie', '<CMD>PHPEasyInitEnum<CR>'},
+            {'-c', '<CMD>PHPEasyAppendConstant<CR>', mode = {'n', 'v'}},
+            {'-p', '<CMD>PHPEasyAppendProperty<CR>', mode = {'n', 'v'}},
+            {'-m', '<CMD>PHPEasyAppendMethod<CR>', mode = {'n', 'v'}},
+            {'-_', '<CMD>PHPEasyAppendConstruct<CR>'},
+            {'-a', '<CMD>PHPEasyAppendArgument<CR>'},
+        }
+    },
+    {
+        "natecraddock/workspaces.nvim",
+        -- Load plugin instantly on opening nvim
+        lazy = false,
+        event = "UiEnter",
+        config = function()
+            require("workspaces").setup({
 
-      })
-    end,
-  }
+            })
+        end,
+    },
+    {
+        "ThePrimeagen/harpoon",
+        cmd = "Harpoon",
+        config = function()
+        require("harpoon").setup({
+        })
+        end,
+    }
 }
