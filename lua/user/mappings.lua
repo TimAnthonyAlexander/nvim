@@ -8,8 +8,9 @@ return {
   n = {
     -- second key is the lefthand side of the map
     -- mappings seen under group name "Buffer"
-    ["<c-x>"] = { "<cmd>ToggleTerm1<cr>", desc = "Toggle Term" },
-    ["<c-y>"] = { "<cmd>ToggleTerm2<cr>", desc = "Toggle Term" },
+    ["<c-x>"] = { "<cmd>ToggleTerm1<cr>", desc = "Term 1" },
+    ["<c-y>"] = { "<cmd>ToggleTerm2<cr>", desc = "Term 2" },
+    ["<c-a>"] = { "<cmd>ToggleTerm3 direction=horizontal size=15<cr>", desc = "Term 3" },
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
@@ -25,33 +26,53 @@ return {
     L = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
     H = { function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
 
+        --Test single method
+-- To test a single test, hover over the test and run lua require("neotest").run.run()
+--
+-- Test file
+-- To test a file run lua require("neotest").run.run(vim.fn.expand("%"))
+--
+-- Test directory
+-- To test a directory run lua require("neotest").run.run("path/to/directory")
+--
+-- Test suite
+-- To test the full test suite run lua require("neotest").run.run({ suite = true })
+        -- Test single test leader at
     ["<leader>a"] = { name = "PHP Actions" },
+    ["<leader>at"] = { name = "Unit Tests" },
+    ["<leader>ai"] = { name = "Middleware" },
+    ["<leader>ac"] = { name = "Composer" },
+        -- Test suite leader au
+    ["<leader>atm"] = { "<cmd>lua require('neotest').run.run()<cr>", desc = "Method INLINE" },
+    -- atf runs the current test file with lua require("neotest").run.run(vim.fn.expand("%"))
+    ["<leader>atf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "File INLINE" },
+    -- att runs the current file but with TermExec cmd="composer test-functional -- %:p"
+    ["<leader>att"] = { "<cmd>3TermExec cmd=\"composer test-unit -- %:p\" direction=horizontal size=10<cr>", desc = "File TERM" },
+        -- ["<leader>au"] = { "<cmd>lua require('neotest').run.run(\"test\")<cr><cmd>Neotest summary open<cr>", desc = "Run all tests" },
     -- leader at executes unit test on current file
-    ["<leader>at"] = { "<cmd>TermExec cmd=\"composer test-unit -- %:p\"<cr>", desc = "Run unit test" },
+    -- ["<leader>at"] = { "<cmd>TermExec cmd=\"composer test-unit -- %:p\"<cr>", desc = "Run unit test" },
     -- leader ab executes all unit tests
-    ["<leader>au"] = { "<cmd>TermExec cmd=\"composer test-unit\"<cr>", desc = "Run all unit tests" },
+    ["<leader>ata"] = { "<cmd>3TermExec cmd=\"composer test-unit-parallel-functional\" direction=horizontal size=30<cr>", desc = "All Parallel TERM" },
     -- leader af executes docker exec -ti mw-appmwdev-1 composer cs-fix
-    ["<leader>af"] = { "<cmd>TermExec cmd=\"composer cs-fix\"<cr>", desc = "Run cs-fix" },
+    ["<leader>af"] = { "<cmd>3TermExec cmd=\"composer cs-fix\" direction=horizontal size=5<cr>", desc = "Fix TERM" },
     -- leader ap executes pre-commit hook
-    ["<leader>ap"] = { "<cmd>TermExec cmd=\".git/hooks/pre-commit\"<cr>", desc = "Run pre-commit" },
+    ["<leader>ap"] = { "<cmd>3TermExec cmd=\".git/hooks/pre-commit\" direction=horizontal size=30<cr>", desc = "Pre-Commit TERM" },
 
     -- leader ai shows name "Middleware"
-    ["<leader>ai"] = { name = "Middleware" },
     -- leader aip executes docker compose exec appmwdev composer phpstan
-    ["<leader>aip"] = { "<cmd>TermExec cmd=\"docker compose exec appmwdev composer phpstan\"<cr>", desc = "Run phpstan" },
+    ["<leader>aip"] = { "<cmd>TermExec cmd=\"docker compose exec appmwdev composer phpstan\"<cr>", desc = "PHPStan CONTAINER" },
     -- leader ac shows name "Composer"
     
-    ["<leader>ac"] = { name = "Composer" },
     -- leader aci executes composer install
-    ["<leader>aci"] = { "<cmd>TermExec cmd=\"composer install\"<cr>", desc = "Run composer install" },
+    ["<leader>aci"] = { "<cmd>TermExec cmd=\"composer install\"<cr>", desc = "Install" },
     -- leader aa executes composer phpstan
-    ["<leader>acp"] = { "<cmd>TermExec cmd=\"composer phpstan\"<cr>", desc = "Run phpstan" },
+    ["<leader>acp"] = { "<cmd>TermExec cmd=\"composer phpstan\"<cr>", desc = "PHPStan TERM" },
     -- leader acu executes composer update
-    ["<leader>acu"] = { "<cmd>TermExec cmd=\"composer update\"<cr>", desc = "Run composer update" },
+    ["<leader>acu"] = { "<cmd>TermExec cmd=\"composer update\"<cr>", desc = "Update" },
     -- leader acd executes composer dump-autoload
-    ["<leader>acd"] = { "<cmd>TermExec cmd=\"composer dump-autoload\"<cr>", desc = "Run composer dump-autoload" },
+    ["<leader>acd"] = { "<cmd>TermExec cmd=\"composer dump-autoload\"<cr>", desc = "Dump Autoload" },
     -- leader acr writes composer require without executing
-    ["<leader>acm"] = { "<cmd>TermExec cmd=\"composer migrations\"<cr>", desc = "Run composer migrations" },
+    ["<leader>acm"] = { "<cmd>TermExec cmd=\"composer migrations\"<cr>", desc = "Migrations" },
     -- Close the last tab "Empty" and show the dashboard with <leader>c
     -- leader fp performs :WorkspacesOpen
     ["<leader>fp"] = { "<cmd>WorkspacesOpen<cr>", desc = "Open Workspaces" },
@@ -82,20 +103,17 @@ return {
     -- Leader and j = pounce
     ["<leader>j"] = { "<cmd>Pounce<cr>", desc = "Pounce" },
     ["<c-g>"] = { "<cmd>ChatGPT<cr>", desc = "ChatGPT" },
-    -- Control a executes :ChatGPTEditWithInstructions
-    ["<c-a>"] = { "<cmd>ChatGPTEditWithInstructions<cr>", desc = "ChatGPTEditWithInstructions" },
   },
   i = {
-    ["<c-x>"] = { "<cmd>ToggleTerm1<cr>", desc = "Toggle First Terminal" },
-    ["<c-y>"] = { "<cmd>ToggleTerm2<cr>", desc = "Toggle Second Terminal" },
+    ["<c-x>"] = { "<cmd>ToggleTerm1<cr>", desc = "Term 1" },
+    ["<c-y>"] = { "<cmd>ToggleTerm2<cr>", desc = "Term 2" },
+    ["<c-a>"] = { "<cmd>ToggleTerm3<cr>", desc = "Term 3" },
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
-    ["<c-x>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle Term" },
-    ["<c-y>"] = { "<cmd>ToggleTerm<cr>", desc = "2Toggle Term" },
+    ["<c-x>"] = { "<cmd>ToggleTerm<cr>", desc = "Term 1" },
+    ["<c-y>"] = { "<cmd>ToggleTerm<cr>", desc = "Term 2" },
+    ["<c-a>"] = { "<cmd>ToggleTerm<cr>", desc = "Term 3" },
   }, 
-    v = {
-        ["<c-a>"] = { "<cmd>ChatGPTEditWithInstructions<cr>", desc = "ChatGPTEditWithInstructions" },
-    }
 }
