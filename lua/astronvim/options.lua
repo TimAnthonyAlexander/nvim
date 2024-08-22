@@ -19,7 +19,7 @@ local options = astronvim.user_opts("options", {
     foldlevel = 99, -- set high foldlevel for nvim-ufo
     foldlevelstart = 99, -- start with all code unfolded
     foldcolumn = vim.fn.has "nvim-0.9" == 1 and "1" or nil, -- show foldcolumn in nvim 0.9
-    history = 100, -- Number of commands to remember in a history table
+    history = 500, -- Number of commands to remember in a history table
     ignorecase = true, -- Case insensitive searching
     infercase = true, -- Infer cases in keyword completion
     laststatus = 3, -- globalstatus
@@ -29,7 +29,7 @@ local options = astronvim.user_opts("options", {
     preserveindent = true, -- Preserve indent structure as much as possible
     pumheight = 10, -- Height of the pop up menu
     relativenumber = true, -- Show relative numberline
-    scrolloff = 8, -- Number of lines to keep above and below the cursor
+    scrolloff = 2, -- Number of lines to keep above and below the cursor
     shiftwidth = 4, -- Number of space inserted for indentation
     showmode = false, -- Disable showing modes in command line
     showtabline = 2, -- always display tabline
@@ -61,7 +61,7 @@ local options = astronvim.user_opts("options", {
     icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available)
     inlay_hints_enabled = true, -- enable or disable LSP inlay hints on startup (Neovim v0.10 only)
     lsp_handlers_enabled = true, -- enable or disable default vim.lsp.handlers (hover and signatureHelp)
-    semantic_tokens_enabled = true, -- enable or disable LSP semantic tokens on startup
+    semantic_tokens_enabled = false, -- enable or disable LSP semantic tokens on startup
     ui_notifications_enabled = true, -- disable notifications (TODO: rename to  notifications_enabled in AstroNvim v4)
   },
   t = vim.t.bufs and vim.t.bufs or { bufs = vim.api.nvim_list_bufs() }, -- initialize buffers for the current tab

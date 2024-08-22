@@ -455,5 +455,38 @@ return {
           },
         })
       end
-    }
+    },
+    {
+  "folke/todo-comments.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+        event = "BufRead",
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+},
+{
+        event = "InsertEnter",
+        'akinsho/git-conflict.nvim',
+        version = "*",
+        config = function ()
+            require("git-conflict").setup({
+                ours = 'o',
+                theirs = 't',
+                none = '0',
+                both = 'b',
+                next = 'n',
+                prev = 'p',
+            })
+        end
+    },
+    {
+        "uga-rosa/ccc.nvim",
+        event = "BufRead",
+        cmd = "CCC",
+        config = function()
+            require("ccc").setup()
+        end,
+    },
 }

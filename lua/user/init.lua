@@ -52,6 +52,7 @@ return {
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
+        "null-ls",
       },
       timeout_ms = 3000, -- default format timeout
       filter = function(bufnr)
@@ -110,6 +111,16 @@ return {
     vim.api.nvim_create_autocmd("BufEnter", {
       command = "set shiftwidth=4",
     })
+    vim.api.nvim_create_autocmd('User', {
+          pattern = 'GitConflictDetected',
+          callback = function()
+            -- vim.notify('Conflict detected in '..vim.fn.expand('<afile>'))
+            vim.keymap.set('n', 'cww', function()
+              engage.conflict_buster()
+              create_buffer_local_mappings()
+            end)
+          end
+        })
 
     -- Set up custom augroups
     -- Set up custom filetypes

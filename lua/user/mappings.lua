@@ -22,9 +22,26 @@ return {
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["<C-s>"] = { "<cmd>:w!<cr>", desc = "Save File" },  -- change description but the same command
     L = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
     H = { function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end, desc = "Previous buffer" },
+
+        -- GitConflictChooseOurs — Select the current changes. - cco
+-- GitConflictChooseTheirs — Select the incoming changes.
+-- GitConflictChooseBoth — Select both changes. - ccb
+-- GitConflictChooseNone — Select none of the changes. - cc0
+-- GitConflictNextConflict — Move to the next conflict. - ccn
+-- GitConflictPrevConflict — Move to the previous conflict. - ccp
+-- GitConflictListQf - Get all conflicts in quickfix list - ccq
+        --
+    ["cc"] = { name = "Git Conflict" },
+    ["cco"] = { "<cmd>GitConflictChooseOurs<cr>", desc = "Choose Ours" },
+    ["cct"] = { "<cmd>GitConflictChooseTheirs<cr>", desc = "Choose Theirs" },
+    ["ccb"] = { "<cmd>GitConflictChooseBoth<cr>", desc = "Choose Both" },
+    ["ccn"] = { "<cmd>GitConflictNextConflict<cr>", desc = "Next Conflict" },
+    ["ccp"] = { "<cmd>GitConflictPrevConflict<cr>", desc = "Previous Conflict" },
+    ["ccq"] = { "<cmd>GitConflictListQf<cr>", desc = "List Quickfix" },
+    ["cc0"] = { "<cmd>GitConflictChooseNone<cr>", desc = "Choose None" },
 
         --Test single method
 -- To test a single test, hover over the test and run lua require("neotest").run.run()
@@ -108,6 +125,7 @@ return {
     ["<c-x>"] = { "<cmd>ToggleTerm1<cr>", desc = "Term 1" },
     ["<c-y>"] = { "<cmd>ToggleTerm2<cr>", desc = "Term 2" },
     ["<c-a>"] = { "<cmd>ToggleTerm3<cr>", desc = "Term 3" },
+    ["<C-s>"] = { "<cmd>:w!<cr>", desc = "Save File" },  -- change description but the same command
   },
   t = {
     -- setting a mapping to false will disable it
