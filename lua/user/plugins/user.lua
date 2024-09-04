@@ -367,25 +367,6 @@ return {
             {'-a', '<CMD>PHPEasyAppendArgument<CR>'},
         }
     },
-    {
-        "natecraddock/workspaces.nvim",
-        -- Load plugin instantly on opening nvim
-        lazy = false,
-        event = "UiEnter",
-        config = function()
-            require("workspaces").setup({
-
-            })
-        end,
-    },
-    {
-        "ThePrimeagen/harpoon",
-        cmd = "Harpoon",
-        config = function()
-        require("harpoon").setup({
-        })
-        end,
-    },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     cmd = 'RenderMarkdown',
@@ -394,43 +375,6 @@ return {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
-    {
-  "folke/trouble.nvim",
-  opts = {}, -- for default options, refer to the configuration section for custom setup.
-  cmd = "Trouble",
-  keys = {
-    {
-      "<leader>xx",
-      "<cmd>Trouble diagnostics toggle<cr>",
-      desc = "Diagnostics (Trouble)",
-    },
-    {
-      "<leader>xX",
-      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-      desc = "Buffer Diagnostics (Trouble)",
-    },
-    {
-      "<leader>cs",
-      "<cmd>Trouble symbols toggle focus=false<cr>",
-      desc = "Symbols (Trouble)",
-    },
-    {
-      "<leader>cl",
-      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-      desc = "LSP Definitions / references / ... (Trouble)",
-    },
-    {
-      "<leader>xL",
-      "<cmd>Trouble loclist toggle<cr>",
-      desc = "Location List (Trouble)",
-    },
-    {
-      "<leader>xQ",
-      "<cmd>Trouble qflist toggle<cr>",
-      desc = "Quickfix List (Trouble)",
-    },
-  }
-    },
     {
       "nvim-neotest/neotest",
       lazy = true,
@@ -457,36 +401,60 @@ return {
       end
     },
     {
-  "folke/todo-comments.nvim",
-  dependencies = { "nvim-lua/plenary.nvim" },
-        event = "BufRead",
-  opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
-},
-{
-        event = "InsertEnter",
-        'akinsho/git-conflict.nvim',
-        version = "*",
-        config = function ()
-            require("git-conflict").setup({
-                ours = 'o',
-                theirs = 't',
-                none = '0',
-                both = 'b',
-                next = 'n',
-                prev = 'p',
-            })
-        end
+      'akinsho/git-conflict.nvim',
+      cmd = "GitConflict",
+      version = "*",
+      config = function ()
+          require("git-conflict").setup({
+              ours = 'o',
+              theirs = 't',
+              none = '0',
+              both = 'b',
+              next = 'n',
+              prev = 'p',
+          })
+      end
     },
+    -- {
+    --     "uga-rosa/ccc.nvim",
+    --     event = "BufRead",
+    --     cmd = "CCC",
+    --     config = function()
+    --         require("ccc").setup()
+    --     end,
+    -- },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {
+      hint_enable = false,
+    },
+    config = function(_, opts) require'lsp_signature'.setup(opts) end
+  },
+  -- {
+  --   event = "BufRead",
+  --   'tzachar/highlight-undo.nvim',
+  --   opts = {
+  --   },
+  -- },
+  {
+	  "chrisgrieser/nvim-early-retirement",
+	  config = function()
+      require("early-retirement").setup({
+        retirementAgeMins = 20,
+      })
+    end,
+	  event = "VeryLazy",
+  },
+    { "rose-pine/neovim", name = "rose-pine" },
     {
-        "uga-rosa/ccc.nvim",
-        event = "BufRead",
-        cmd = "CCC",
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
         config = function()
-            require("ccc").setup()
+            require("cyberdream").setup({
+                transparent = true,
+            })
         end,
-    },
+},
 }

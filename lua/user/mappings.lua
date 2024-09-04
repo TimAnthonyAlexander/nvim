@@ -64,16 +64,16 @@ return {
     -- atf runs the current test file with lua require("neotest").run.run(vim.fn.expand("%"))
     ["<leader>atf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "File INLINE" },
     -- att runs the current file but with TermExec cmd="composer test-functional -- %:p"
-    ["<leader>att"] = { "<cmd>3TermExec cmd=\"composer test-unit -- %:p\" direction=horizontal size=10<cr>", desc = "File TERM" },
+    ["<leader>att"] = { "<cmd>TermExec cmd=\"composer test-unit -- %:p\"<cr>", desc = "File TERM" },
         -- ["<leader>au"] = { "<cmd>lua require('neotest').run.run(\"test\")<cr><cmd>Neotest summary open<cr>", desc = "Run all tests" },
     -- leader at executes unit test on current file
     -- ["<leader>at"] = { "<cmd>TermExec cmd=\"composer test-unit -- %:p\"<cr>", desc = "Run unit test" },
     -- leader ab executes all unit tests
-    ["<leader>ata"] = { "<cmd>3TermExec cmd=\"composer test-unit-parallel-functional\" direction=horizontal size=30<cr>", desc = "All Parallel TERM" },
+    ["<leader>ata"] = { "<cmd>TermExec cmd=\"composer test-unit-parallel-functional\"<cr>", desc = "All Parallel TERM" },
     -- leader af executes docker exec -ti mw-appmwdev-1 composer cs-fix
-    ["<leader>af"] = { "<cmd>3TermExec cmd=\"composer cs-fix\" direction=horizontal size=5<cr>", desc = "Fix TERM" },
+    ["<leader>af"] = { "<cmd>TermExec cmd=\"composer cs-fix\" <cr>", desc = "Fix TERM" },
     -- leader ap executes pre-commit hook
-    ["<leader>ap"] = { "<cmd>3TermExec cmd=\".git/hooks/pre-commit\" direction=horizontal size=30<cr>", desc = "Pre-Commit TERM" },
+    ["<leader>ap"] = { "<cmd>TermExec cmd=\".git/hooks/pre-commit\" <cr>", desc = "Pre-Commit TERM" },
 
     -- leader ai shows name "Middleware"
     -- leader aip executes docker compose exec appmwdev composer phpstan
@@ -132,6 +132,5 @@ return {
     -- ["<esc>"] = false,
     ["<c-x>"] = { "<cmd>ToggleTerm<cr>", desc = "Term 1" },
     ["<c-y>"] = { "<cmd>ToggleTerm<cr>", desc = "Term 2" },
-    ["<c-a>"] = { "<cmd>ToggleTerm<cr>", desc = "Term 3" },
   }, 
 }

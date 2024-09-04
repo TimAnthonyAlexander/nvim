@@ -33,7 +33,7 @@ function M.toggle_autopairs()
     vim.g.autopairs_enabled = autopairs.state.disabled
     notify(string.format("autopairs %s", bool2str(not autopairs.state.disabled)))
   else
-    notify "autopairs not available"
+    -- notify "autopairs not available"
   end
 end
 
