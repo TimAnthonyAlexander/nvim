@@ -6,7 +6,31 @@ return {
       "jay-babu/mason-nvim-dap.nvim",
       dependencies = { "nvim-dap" },
       cmd = { "DapInstall", "DapUninstall" },
-      opts = { handlers = {} },
+      opts = {
+        ensure_installed = {'php'},
+        handlers = {
+            function(config)
+                require('mason-nvim-dap').default_setup(config)
+            end,
+            php = function(config)
+                config.configurations = {
+                    {
+                        type = 'php',
+                        request = 'launch',
+                        name = "Listen for XDebug",
+                        port = 9008,
+                        log = true,
+                        pathMappings = {
+                            ['/home/appmwdev/current/'] = vim.fn.getcwd() .. '/',
+                        },
+                        hostname = '0.0.0.0',
+                    }
+                }
+
+                require('mason-nvim-dap').default_setup(config) -- don't forget this!
+            end,
+            } 
+        },
     },
     {
       "rcarriga/nvim-dap-ui",

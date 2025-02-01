@@ -105,9 +105,9 @@ return {
     vim.api.nvim_create_autocmd("UiEnter", {
       command = "Neotree toggle ",
     })
-    vim.api.nvim_create_autocmd("BufEnter", {
-      command = "Copilot! attach ",
-    })
+    -- vim.api.nvim_create_autocmd("BufEnter", {
+    --   command = "Copilot! attach ",
+    -- })
     vim.api.nvim_create_autocmd("BufEnter", {
       command = "set shiftwidth=4",
     })
